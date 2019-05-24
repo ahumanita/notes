@@ -1,0 +1,61 @@
+\begin{tikzpicture}
+    \def\varx{1.8}
+    \def\vary{-0.5}
+    \def\xshift{0.6}
+
+    % start cell
+    \draw (0.08-\xshift,0.08) -- (0.33-\xshift,0.83)
+    -- (0.98-\xshift,0.88) -- ( 1.28- \xshift, 0.68) 
+    -- ( 0.08- \xshift, 0.08);
+    \node (cell) at ( 0.5- \xshift, 0.5) {$\cell$};
+
+    % map Phi_O^-1
+    \draw[->] ( 0.5+ 0.03, 1+ 0.03) to
+      [out=90,in=90] ( \varx+ 0.5- 0.03, 1+ 0.03);
+    \node (PhiO) at ( 1.4, 1.4) {$\Phi_O^{-1}$};
+
+    % Phi_0^-1 (translation + rotation)
+    % drehwinkel a = 26.57°
+    \def\sina{-0.447290848418}
+    \def\cosa{0.8943885603}
+    \draw[dashed] ( \varx,0) -- ( \varx+ 1,0) 
+    -- ( \varx+ 1, 1) -- ( \varx, 1) 
+    -- ( \varx,0);
+    \draw ( \varx,0) -- 
+    ( 0.25*\cosa- 0.75*\sina+ \varx, 0.25*\sina+ 0.75*\cosa) 
+    -- ( 0.9*\cosa- 0.8*\sina+ \varx, 0.9*\sina+ 0.8*\cosa) 
+    -- ( 1.2*\cosa- 0.6*\sina+ \varx, 1.2*\sina +  0.6*\cosa) 
+    -- ( \varx,0);
+
+    % map Phi_S^-1
+    \draw[->] ( 0.5+ \varx,0- 0.03) to
+      [out=-90,in=90] ( 0.5, \vary+ 0.03);
+    \node (Phi_S) at ( 1.4, \vary+ 0.4) {$\Phi_S^{-1}$};
+    
+    % Phi_S^-1 (scaling)
+    % h_T : 1.3416407864998
+    % scaling : 
+    \def\scl{ 0.74535599249992} 
+    \draw[dashed] (0, \vary) -- ( 1, \vary) -- 
+    ( 1, \vary- 1) -- (0, \vary- 1) 
+    -- (0, \vary);
+    \draw (0, \vary- 1) -- 
+    (\scl*0.25*\cosa-\scl*0.75*\sina,\scl*0.25*\sina+\scl*0.75*\cosa+ \vary- 1) 
+    -- (\scl*0.9*\cosa-\scl*0.8*\sina,\scl*0.9*\sina+\scl*0.8*\cosa+ \vary- 1) 
+    -- (\scl*1.2*\cosa-\scl*0.6*\sina,\scl*1.2*\sina + \scl*0.6*\cosa+ \vary- 1) 
+    -- (0, \vary- 1);
+    
+    % map Phi_W^-1
+    \draw[->] ( 0.5, \vary- 1- 0.03) to
+      [out=-90,in=-90] ( \varx+ 0.5, \vary- 1- 0.03);
+    \node (PhiW) at ( 1.4, \vary-1-0.4) {$\Phi_W^{-1}$};
+    
+    % Phi_W^{-1}
+    \draw[dashed] ( \varx, \vary) -- ( \varx+ 1, \vary) 
+    -- ( \varx+ 1, \vary- 1) -- ( \varx, \vary- 1) 
+    -- ( \varx, \vary);
+    \draw ( \varx, \vary) -- ( \varx+ 1, \vary) 
+    -- ( \varx+ 1, \vary- 1) -- ( \varx, \vary- 1) 
+    -- ( \varx, \vary);
+    \node (cell3) at ( 0.5+ \varx, 0.5+ \vary- 1) {$\refcell$};
+\end{tikzpicture}
